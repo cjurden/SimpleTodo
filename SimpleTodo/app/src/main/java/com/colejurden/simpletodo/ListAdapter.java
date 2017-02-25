@@ -41,12 +41,12 @@ public class ListAdapter extends ArrayAdapter<Item> {
     priority.setText(Integer.toString(item.priority));
     text.setText(item.text);
 
-    switch(item.priority) {
-      case 1:
+    switch(Integer.toString(item.priority)) {
+      case "1":
         priority.setTextColor(Color.rgb(255,51,51));
-      case 2:
+      case "2":
         priority.setTextColor(Color.rgb(255,153,51));
-      case 3:
+      case "3":
         priority.setTextColor(Color.rgb(0,204,0));
     }
 
