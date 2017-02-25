@@ -43,11 +43,11 @@ public class ListAdapter extends ArrayAdapter<Item> {
 
     switch(item.priority) {
       case 1:
-        text.setTextColor(Color.rgb(255,51,51));
+        priority.setTextColor(Color.rgb(255,51,51));
       case 2:
-        text.setTextColor(Color.rgb(255,153,51));
+        priority.setTextColor(Color.rgb(255,153,51));
       case 3:
-        text.setTextColor(Color.rgb(0,204,0));
+        priority.setTextColor(Color.rgb(0,204,0));
     }
 
     return view;

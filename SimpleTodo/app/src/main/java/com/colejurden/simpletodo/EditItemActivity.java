@@ -34,9 +34,9 @@ public class EditItemActivity extends AppCompatActivity {
 
   public void onSave(View v) {
     Intent data = new Intent();
-    data.putExtra("text", etModifiedText.getText());
+    data.putExtra("text", etModifiedText.getText().toString());
     data.putExtra("pos", pos);
-    data.putExtra("priority", (Integer)spinner2.getSelectedItem());
+    data.putExtra("priority", Integer.parseInt(spinner2.getSelectedItem().toString()));
     setResult(RESULT_OK, data);
     this.finish();
   }

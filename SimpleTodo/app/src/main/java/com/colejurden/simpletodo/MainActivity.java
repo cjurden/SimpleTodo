@@ -22,10 +22,10 @@ import static android.R.attr.start;
 
 public class MainActivity extends AppCompatActivity {
   static final int EDIT_REQUEST = 2;
-  ArrayList<Item> items;
-  ArrayAdapter<Item> itemsAdapter;
-  ListView lvItems;
-  Spinner spinner;
+  public ArrayList<Item> items;
+  public ArrayAdapter<Item> itemsAdapter;
+  public ListView lvItems;
+  public Spinner spinner;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
   public void onAddItem(View v) {
     EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-    int priority = (Integer) spinner.getSelectedItem();
+    int priority = Integer.parseInt(spinner.getSelectedItem().toString());
     String etText = etNewItem.getText().toString();
     Item newItem = new Item(etText, priority);
     itemsAdapter.add(newItem);
@@ -108,18 +108,22 @@ public class MainActivity extends AppCompatActivity {
     spinner.setSelection(0);
   }
 
+  private void refresh(String text, int priority, int pos) {
+    Item item = new Item(text, priority);
+    items.set(pos, item);
+    itemsAdapter.notifyDataSetChanged();
+    this.writeItems();
+  }
+
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
     switch (requestCode) {
       case EDIT_REQUEST:
         if (resultCode == RESULT_OK) {
           int pos = data.getIntExtra("pos", 0);
-          String text = data.getStringExtra("text");
-          int priority = data.getIntExtra("priority", 0);
-          Item newItem = new Item(text, priority);
-          items.set(pos, newItem);
-          writeItems();
+          String text = data.getExtras().getString("text");
+          int priority = data.getExtras().getInt("priority", 0);
+          refresh(text, priority, pos);
       }
     }
   }

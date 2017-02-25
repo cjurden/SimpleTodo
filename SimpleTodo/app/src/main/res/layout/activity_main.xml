@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/spinner"
+        android:entries="@array/priorities"
         android:layout_toLeftOf="@+id/etNewItem"
         android:layout_toStartOf="@+id/etNewItem"
         android:layout_alignTop="@+id/etNewItem"
